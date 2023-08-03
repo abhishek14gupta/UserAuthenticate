@@ -1,5 +1,6 @@
 package com.nagarro;
 
+import com.nagarro.auth.UserAuthenticator;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -24,7 +25,8 @@ public class DropwizardAuthenticatorApplication extends Application<DropwizardAu
     @Override
     public void run(final DropwizardAuthenticatorConfiguration configuration,
                     final Environment environment) {
-        final AuthenticationResource resource = new AuthenticationResource();
+        final var userAuthenticator = new UserAuthenticator();
+        final var resource = new AuthenticationResource(userAuthenticator);
         environment.jersey().register(resource);
     }
 
