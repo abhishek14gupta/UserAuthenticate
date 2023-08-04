@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestUserAuthenticator {
+class TestUserAuthenticator {
 
     private static final String VALID_USERID = "abhishek";
     private static final String VALID_USERPASSWORD = "abhi@123";
@@ -14,15 +14,20 @@ public class TestUserAuthenticator {
     private static final UserAuthenticator userAuthenticator = new UserAuthenticator();
     @Test
     void testAuthenticateValid(){
+        //Given
         final var expected = true;
+        //When
         final var actual = userAuthenticator.authenticate(VALID_USERID,VALID_USERPASSWORD);
+        //Then
         assertEquals(expected,actual);
     }
 
     @Test
     void testAuthenticateInValid(){
         final var expected = false;
+
         final var actual = userAuthenticator.authenticate(INVALID_USERID,INVALID_USERPASSWORD);
+
         assertEquals(expected,actual);
     }
 
